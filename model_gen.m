@@ -9,7 +9,7 @@ if ~exist(export_path,'dir')
 end
 
 % Load Settings
-load_model = true;
+load_model = false;
 delay_set = true;
 
 % Add FROST
@@ -17,12 +17,15 @@ FROST_PATH = '../frost-dev';
 addpath(FROST_PATH)
 frost_addpath;
 
+% Add utils
+addpath(genpath('../utils'));
+
 % Add model paths
 addpath(genpath('urdf'));
 
 %% Create Model and Export Kinematics 
 % Load model
-cassie = CASSIE('urdf/cassie.urdf');
+cassie = CASSIE('urdf/cassie_with_sensors.urdf');
 
 if load_model
     % Load previously saved model
@@ -38,8 +41,11 @@ else
     if ~exist([export_path,'dyn/'],'dir')
         mkdir([export_path,'dyn/']);
     end
-    cassie.configureDynamics();
+    cassie.configureDynamics('DelayCoriolisSet',false);
     cassie.compile([export_path,'dyn/']);
+    
+    % Export Energy
+    cassie.ExportEnergy([export_path,'dyn/']);
 
     % Save
     if ~exist([export_path,'sym/'],'dir')

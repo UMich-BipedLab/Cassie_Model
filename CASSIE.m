@@ -1,4 +1,9 @@
 classdef CASSIE < RobotLinks
+    % Cassie class to be used with FROST
+    %
+    %   Author: Ross Hartley
+    %   Date:   11/7/2017
+    %
     
     properties
         ContactPoints = struct;
@@ -43,7 +48,12 @@ classdef CASSIE < RobotLinks
                 base(i).Limit = limits(i);
             end
             
-            obj = obj@RobotLinks(urdf,base);
+            % load model from the URDF file
+            config = struct();
+            config_file = GetFullPath(urdf);
+            [config.name, config.links, config.joints, config.transmissions] = ros_load_urdf(config_file);
+            obj = obj@RobotLinks(config, base);
+            obj.ConfigFile = config_file;
             
             %% Add 4-bar holonomic constraint
             four_bar = [obj.States.x('knee_joint_left'); obj.States.x('knee_joint_right')] + ...
@@ -75,7 +85,46 @@ classdef CASSIE < RobotLinks
                 );
             
             %% define other frames
+            pelvis_frame = obj.Links(getLinkIndices(obj, 'pelvis'));
             
+            multisense_frame = config.joints(strcmp({config.joints.Child}, 'multisense'));
+            if ~isempty(multisense_frame)
+                obj.OtherPoints.Multisense = CoordinateFrame(...
+                    'Name','Multisense',...
+                    'Reference',pelvis_frame,...
+                    'Offset',multisense_frame.Offset,...
+                    'R',multisense_frame.R... 
+                    );
+            end
+            
+            vectorNav_frame = config.joints(strcmp({config.joints.Child}, 'vectorNav'));
+            if ~isempty(vectorNav_frame)
+                obj.OtherPoints.VectorNav = CoordinateFrame(...
+                    'Name','VectorNav',...
+                    'Reference',pelvis_frame,...
+                    'Offset',vectorNav_frame.Offset,...
+                    'R',vectorNav_frame.R... 
+                    );
+            end
+        end
+        
+        function ExportEnergy(obj, export_path)
+            % Generates code for kinetic and potential energy
+            
+            % Kinetic Energy
+            T = 0.5 * obj.States.dx' * obj.Mmat * obj.States.dx;
+            export_simulation(T, 'KineticEnergy', export_path, {obj.States.x, obj.States.dx});
+            
+            % Potential Energy
+            V = SymExpression();
+            g = 9.81;
+            for i = 1:length(obj.Links)
+                p = obj.Links(i).computeCartesianPosition;
+                m = obj.Links(i).Mass;
+                V = V + m*g*p(3);
+            end
+            export_simulation(V, 'PotentialEnergy', export_path, {obj.States.x});
+
         end
         
         function ExportKinematics(obj, export_path)
@@ -88,37 +137,40 @@ classdef CASSIE < RobotLinks
             
             % Compute positions of all joints
             for i = 1:length(obj.Joints)
-                position = obj.Joints(i).computeCartesianPosition;
+                p = obj.Joints(i).computeCartesianPosition;
+                J = jacobian(p, obj.States.x);
                 H = obj.Joints(i).computeForwardKinematics;
-                vars = obj.States.x;
-                filename = [export_path, 'p_', obj.Joints(i).Name];
-                export(position, 'Vars', vars, 'File', filename);
-                filename = [export_path, 'H_', obj.Joints(i).Name];
-                export(H, 'Vars', vars, 'File', filename);
+                R = H(1:3,1:3);
+                export_simulation(p, ['p_', obj.Joints(i).Name], export_path, obj.States.x);
+                export_simulation(J, ['J_', obj.Joints(i).Name], export_path, obj.States.x);
+                export_simulation(H, ['H_', obj.Joints(i).Name], export_path, obj.States.x);
+                export_simulation(R, ['R_', obj.Joints(i).Name], export_path, obj.States.x);  
             end
             
             % Compute positions of contact points
             cp_fields = fields(obj.ContactPoints);
             for i = 1:length(cp_fields)
-                position = obj.ContactPoints.(cp_fields{i}).computeCartesianPosition;
-                H = obj.ContactPoints.(cp_fields{i}).computeForwardKinematics;
-                vars = obj.States.x;
-                filename = [export_path, 'p_', obj.ContactPoints.(cp_fields{i}).Name];
-                export(position, 'Vars', vars, 'File', filename);
-                filename = [export_path, 'H_', obj.ContactPoints.(cp_fields{i}).Name];
-                export(H, 'Vars', vars, 'File', filename);                
+                p = obj.ContactPoints.(cp_fields{i}).computeCartesianPosition;
+                J = jacobian(p, obj.States.x);
+                H = obj.ContactPoints.(cp_fields{i}).computeForwardKinematics;       
+                R = H(1:3,1:3);
+                export_simulation(p, ['p_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
+                export_simulation(J, ['J_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
+                export_simulation(H, ['H_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
+                export_simulation(R, ['R_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);              
             end
             
             % Compute positions of other points
             op_fields = fields(obj.OtherPoints);
             for i = 1:length(op_fields)
-                position = obj.OtherPoints.(op_fields{i}).computeCartesianPosition;
-                H = obj.OtherPoints.(op_fields{i}).computeForwardKinematics;                
-                vars = obj.States.x;
-                filename = [export_path, 'p_', obj.OtherPoints.(op_fields{i}).Name];
-                export(position, 'Vars', vars, 'File', filename);
-                filename = [export_path, 'H_', obj.OtherPoints.(op_fields{i}).Name];
-                export(position, 'Vars', vars, 'File', filename);                
+                p = obj.OtherPoints.(op_fields{i}).computeCartesianPosition;
+                J = jacobian(p, obj.States.x);
+                H = obj.OtherPoints.(op_fields{i}).computeForwardKinematics;       
+                R = H(1:3,1:3);
+                export_simulation(p, ['p_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
+                export_simulation(J, ['J_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
+                export_simulation(H, ['H_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
+                export_simulation(R, ['R_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
             end
             
             
