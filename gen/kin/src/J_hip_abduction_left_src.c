@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 6 Nov 2017 23:10:48 GMT-05:00
+ * Wed 15 Nov 2017 08:31:54 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,18 +53,88 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t246;
-  double t275;
-  double t224;
-  double t278;
-  double t282;
-  double t283;
-  t246 = Sin(var1[3]);
-  t275 = Cos(var1[3]);
-  t224 = Cos(var1[4]);
-  t278 = Cos(var1[5]);
-  t282 = Sin(var1[4]);
-  t283 = Sin(var1[5]);
+  double t141;
+  double t161;
+  double t164;
+  double t160;
+  double t165;
+  double t151;
+  double t162;
+  double t166;
+  double t168;
+  double t171;
+  double t172;
+  double t173;
+  double t174;
+  double t133;
+  double t153;
+  double t155;
+  double t157;
+  double t159;
+  double t175;
+  double t176;
+  double t184;
+  double t185;
+  double t186;
+  double t188;
+  double t189;
+  double t190;
+  double t226;
+  double t228;
+  double t230;
+  double t237;
+  double t238;
+  double t239;
+  double t232;
+  double t243;
+  double t262;
+  double t263;
+  double t264;
+  double t250;
+  double t251;
+  double t252;
+  double t253;
+  t141 = Sin(var1[3]);
+  t161 = Cos(var1[5]);
+  t164 = Sin(var1[4]);
+  t160 = Cos(var1[3]);
+  t165 = Sin(var1[5]);
+  t151 = Cos(var1[6]);
+  t162 = -1.*t160*t161;
+  t166 = -1.*t141*t164*t165;
+  t168 = t162 + t166;
+  t171 = -1.*t161*t141*t164;
+  t172 = t160*t165;
+  t173 = t171 + t172;
+  t174 = Sin(var1[6]);
+  t133 = Cos(var1[4]);
+  t153 = -1.*t151;
+  t155 = 1. + t153;
+  t157 = 0.135*t155;
+  t159 = 0. + t157;
+  t175 = -0.135*t174;
+  t176 = 0. + t175;
+  t184 = -1.*t161*t141;
+  t185 = t160*t164*t165;
+  t186 = t184 + t185;
+  t188 = t160*t161*t164;
+  t189 = t141*t165;
+  t190 = t188 + t189;
+  t226 = t161*t141;
+  t228 = -1.*t160*t164*t165;
+  t230 = t226 + t228;
+  t237 = t161*t141*t164;
+  t238 = -1.*t160*t165;
+  t239 = t237 + t238;
+  t232 = t151*t190;
+  t243 = t151*t239;
+  t262 = t160*t161;
+  t263 = t141*t164*t165;
+  t264 = t262 + t263;
+  t250 = t133*t161*t151;
+  t251 = -1.*t133*t165*t174;
+  t252 = t250 + t251;
+  t253 = 0.135*t252;
   p_output1[0]=1.;
   p_output1[1]=0;
   p_output1[2]=0;
@@ -74,18 +144,18 @@ static void output1(double *p_output1,const double *var1)
   p_output1[6]=0;
   p_output1[7]=0;
   p_output1[8]=1.;
-  p_output1[9]=0.049*t224*t246 + 0.135*(-1.*t275*t278 - 1.*t246*t282*t283);
-  p_output1[10]=-0.049*t224*t275 + 0.135*(-1.*t246*t278 + t275*t282*t283);
+  p_output1[9]=0.049*t133*t141 + t159*t168 + 0.135*(t151*t168 + t173*t174) + t173*t176;
+  p_output1[10]=-0.049*t133*t160 + t159*t186 + t176*t190 + 0.135*(t151*t186 + t174*t190);
   p_output1[11]=0;
-  p_output1[12]=0.049*t275*t282 + 0.135*t224*t275*t283;
-  p_output1[13]=0.049*t246*t282 + 0.135*t224*t246*t283;
-  p_output1[14]=0.049*t224 - 0.135*t282*t283;
-  p_output1[15]=0.135*(t275*t278*t282 + t246*t283);
-  p_output1[16]=0.135*(t246*t278*t282 - 1.*t275*t283);
-  p_output1[17]=0.135*t224*t278;
-  p_output1[18]=0;
-  p_output1[19]=0;
-  p_output1[20]=0;
+  p_output1[12]=0.049*t160*t164 + t133*t159*t160*t165 + 0.135*(t133*t151*t160*t165 + t133*t160*t161*t174) + t133*t160*t161*t176;
+  p_output1[13]=0.049*t141*t164 + t133*t141*t159*t165 + 0.135*(t133*t141*t151*t165 + t133*t141*t161*t174) + t133*t141*t161*t176;
+  p_output1[14]=0.049*t133 - 1.*t159*t164*t165 + 0.135*(-1.*t151*t164*t165 - 1.*t161*t164*t174) - 1.*t161*t164*t176;
+  p_output1[15]=t159*t190 + t176*t230 + 0.135*(t174*t230 + t232);
+  p_output1[16]=t168*t176 + t159*t239 + 0.135*(t168*t174 + t243);
+  p_output1[17]=t133*t159*t161 - 1.*t133*t165*t176 + t253;
+  p_output1[18]=0.135*t174*t186 - 0.135*t151*t190 + 0.135*(-1.*t174*t186 + t232);
+  p_output1[19]=-0.135*t151*t239 + 0.135*t174*t264 + 0.135*(t243 - 1.*t174*t264);
+  p_output1[20]=-0.135*t133*t151*t161 + 0.135*t133*t165*t174 + t253;
   p_output1[21]=0;
   p_output1[22]=0;
   p_output1[23]=0;

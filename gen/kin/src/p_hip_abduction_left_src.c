@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 6 Nov 2017 23:10:47 GMT-05:00
+ * Wed 15 Nov 2017 08:31:53 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,21 +53,61 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t214;
-  double t217;
-  double t234;
-  double t231;
-  double t236;
-  double t237;
-  t214 = Cos(var1[3]);
-  t217 = Cos(var1[4]);
-  t234 = Sin(var1[3]);
-  t231 = Cos(var1[5]);
-  t236 = Sin(var1[4]);
-  t237 = Sin(var1[5]);
-  p_output1[0]=-0.049*t214*t217 + 0.135*(-1.*t231*t234 + t214*t236*t237) + var1[0];
-  p_output1[1]=-0.049*t217*t234 + 0.135*(t214*t231 + t234*t236*t237) + var1[1];
-  p_output1[2]=0.049*t236 + 0.135*t217*t237 + var1[2];
+  double t109;
+  double t127;
+  double t130;
+  double t128;
+  double t131;
+  double t118;
+  double t129;
+  double t132;
+  double t133;
+  double t135;
+  double t136;
+  double t137;
+  double t138;
+  double t111;
+  double t122;
+  double t124;
+  double t125;
+  double t126;
+  double t139;
+  double t140;
+  double t149;
+  double t150;
+  double t151;
+  double t153;
+  double t154;
+  double t155;
+  t109 = Cos(var1[3]);
+  t127 = Cos(var1[5]);
+  t130 = Sin(var1[4]);
+  t128 = Sin(var1[3]);
+  t131 = Sin(var1[5]);
+  t118 = Cos(var1[6]);
+  t129 = -1.*t127*t128;
+  t132 = t109*t130*t131;
+  t133 = t129 + t132;
+  t135 = t109*t127*t130;
+  t136 = t128*t131;
+  t137 = t135 + t136;
+  t138 = Sin(var1[6]);
+  t111 = Cos(var1[4]);
+  t122 = -1.*t118;
+  t124 = 1. + t122;
+  t125 = 0.135*t124;
+  t126 = 0. + t125;
+  t139 = -0.135*t138;
+  t140 = 0. + t139;
+  t149 = t109*t127;
+  t150 = t128*t130*t131;
+  t151 = t149 + t150;
+  t153 = t127*t128*t130;
+  t154 = -1.*t109*t131;
+  t155 = t153 + t154;
+  p_output1[0]=0. - 0.049*t109*t111 + t126*t133 + 0.135*(t118*t133 + t137*t138) + t137*t140 + var1[0];
+  p_output1[1]=0. - 0.049*t111*t128 + t126*t151 + t140*t155 + 0.135*(t118*t151 + t138*t155) + var1[1];
+  p_output1[2]=0. + 0.049*t130 + t111*t126*t131 + 0.135*(t111*t118*t131 + t111*t127*t138) + t111*t127*t140 + var1[2];
 }
 
 

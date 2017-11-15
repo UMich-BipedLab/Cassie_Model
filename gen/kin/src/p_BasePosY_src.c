@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 6 Nov 2017 23:10:20 GMT-05:00
+ * Wed 15 Nov 2017 08:31:31 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,7 +56,7 @@ static void output1(double *p_output1,const double *var1)
   double _NotUsed;
   NULL;
   p_output1[0]=var1[0];
-  p_output1[1]=0;
+  p_output1[1]=var1[1];
   p_output1[2]=0;
 }
 

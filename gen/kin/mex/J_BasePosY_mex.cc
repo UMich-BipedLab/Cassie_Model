@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 6 Nov 2017 23:10:21 GMT-05:00
+ * Wed 15 Nov 2017 08:31:31 GMT-05:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -51,7 +51,7 @@ static void output1(double *p_output1,const double *var1)
   p_output1[1]=0;
   p_output1[2]=0;
   p_output1[3]=0;
-  p_output1[4]=0;
+  p_output1[4]=1;
   p_output1[5]=0;
   p_output1[6]=0;
   p_output1[7]=0;

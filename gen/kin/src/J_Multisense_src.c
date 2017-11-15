@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 6 Nov 2017 23:13:18 GMT-05:00
+ * Thu 9 Nov 2017 12:21:16 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,18 +53,18 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t1785;
-  double t2474;
-  double t1285;
-  double t2074;
-  double t2337;
-  double t2558;
-  t1785 = Sin(var1[3]);
-  t2474 = Cos(var1[3]);
-  t1285 = Cos(var1[4]);
-  t2074 = Cos(var1[5]);
-  t2337 = Sin(var1[4]);
-  t2558 = Sin(var1[5]);
+  double t711;
+  double t2129;
+  double t440;
+  double t1005;
+  double t1659;
+  double t2254;
+  t711 = Sin(var1[3]);
+  t2129 = Cos(var1[3]);
+  t440 = Cos(var1[4]);
+  t1005 = Cos(var1[5]);
+  t1659 = Sin(var1[4]);
+  t2254 = Sin(var1[5]);
   p_output1[0]=1.;
   p_output1[1]=0;
   p_output1[2]=0;
@@ -74,15 +74,15 @@ static void output1(double *p_output1,const double *var1)
   p_output1[6]=0;
   p_output1[7]=0;
   p_output1[8]=1.;
-  p_output1[9]=-0.0507*t1285*t1785 + 0.2784*(-1.*t1785*t2074*t2337 + t2474*t2558);
-  p_output1[10]=0.0507*t1285*t2474 + 0.2784*(t2074*t2337*t2474 + t1785*t2558);
+  p_output1[9]=-0.0507*t440*t711 + 0.2784*(t2129*t2254 - 1.*t1005*t1659*t711);
+  p_output1[10]=0.0507*t2129*t440 + 0.2784*(t1005*t1659*t2129 + t2254*t711);
   p_output1[11]=0;
-  p_output1[12]=0.2784*t1285*t2074*t2474 - 0.0507*t2337*t2474;
-  p_output1[13]=0.2784*t1285*t1785*t2074 - 0.0507*t1785*t2337;
-  p_output1[14]=-0.0507*t1285 - 0.2784*t2074*t2337;
-  p_output1[15]=0.2784*(t1785*t2074 - 1.*t2337*t2474*t2558);
-  p_output1[16]=0.2784*(-1.*t2074*t2474 - 1.*t1785*t2337*t2558);
-  p_output1[17]=-0.2784*t1285*t2558;
+  p_output1[12]=-0.0507*t1659*t2129 + 0.2784*t1005*t2129*t440;
+  p_output1[13]=-0.0507*t1659*t711 + 0.2784*t1005*t440*t711;
+  p_output1[14]=-0.2784*t1005*t1659 - 0.0507*t440;
+  p_output1[15]=0.2784*(-1.*t1659*t2129*t2254 + t1005*t711);
+  p_output1[16]=0.2784*(-1.*t1005*t2129 - 1.*t1659*t2254*t711);
+  p_output1[17]=-0.2784*t2254*t440;
   p_output1[18]=0;
   p_output1[19]=0;
   p_output1[20]=0;

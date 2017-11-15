@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 6 Nov 2017 23:13:19 GMT-05:00
+ * Thu 9 Nov 2017 12:21:17 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,45 +53,45 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t979;
-  double t1440;
-  double t903;
-  double t2742;
-  double t2980;
-  double t3012;
-  double t3361;
-  double t3410;
-  double t3435;
-  double t3502;
-  double t3548;
-  double t3586;
-  t979 = Cos(var1[4]);
-  t1440 = Sin(var1[3]);
-  t903 = Cos(var1[3]);
-  t2742 = Sin(var1[4]);
-  t2980 = Cos(var1[5]);
-  t3012 = Sin(var1[5]);
-  t3361 = t903*t2980*t2742;
-  t3410 = t1440*t3012;
-  t3435 = t3361 + t3410;
-  t3502 = t2980*t1440*t2742;
-  t3548 = -1.*t903*t3012;
-  t3586 = t3502 + t3548;
-  p_output1[0]=t903*t979;
-  p_output1[1]=t1440*t979;
-  p_output1[2]=-1.*t2742;
+  double t1833;
+  double t2426;
+  double t1752;
+  double t2479;
+  double t2723;
+  double t2771;
+  double t3070;
+  double t3125;
+  double t3133;
+  double t3138;
+  double t3152;
+  double t3156;
+  t1833 = Cos(var1[4]);
+  t2426 = Sin(var1[3]);
+  t1752 = Cos(var1[3]);
+  t2479 = Sin(var1[4]);
+  t2723 = Cos(var1[5]);
+  t2771 = Sin(var1[5]);
+  t3070 = t1752*t2723*t2479;
+  t3125 = t2426*t2771;
+  t3133 = t3070 + t3125;
+  t3138 = t2723*t2426*t2479;
+  t3152 = -1.*t1752*t2771;
+  t3156 = t3138 + t3152;
+  p_output1[0]=t1752*t1833;
+  p_output1[1]=t1833*t2426;
+  p_output1[2]=-1.*t2479;
   p_output1[3]=0;
-  p_output1[4]=-1.*t1440*t2980 + t2742*t3012*t903;
-  p_output1[5]=t1440*t2742*t3012 + t2980*t903;
-  p_output1[6]=t3012*t979;
+  p_output1[4]=-1.*t2426*t2723 + t1752*t2479*t2771;
+  p_output1[5]=t1752*t2723 + t2426*t2479*t2771;
+  p_output1[6]=t1833*t2771;
   p_output1[7]=0;
-  p_output1[8]=t3435;
-  p_output1[9]=t3586;
-  p_output1[10]=t2980*t979;
+  p_output1[8]=t3133;
+  p_output1[9]=t3156;
+  p_output1[10]=t1833*t2723;
   p_output1[11]=0;
-  p_output1[12]=0.2784*t3435 + 0.0507*t903*t979 + var1[0];
-  p_output1[13]=0.2784*t3586 + 0.0507*t1440*t979 + var1[1];
-  p_output1[14]=-0.0507*t2742 + 0.2784*t2980*t979 + var1[2];
+  p_output1[12]=0.0507*t1752*t1833 + 0.2784*t3133 + var1[0];
+  p_output1[13]=0.0507*t1833*t2426 + 0.2784*t3156 + var1[1];
+  p_output1[14]=-0.0507*t2479 + 0.2784*t1833*t2723 + var1[2];
   p_output1[15]=1.;
 }
 

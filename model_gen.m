@@ -2,10 +2,10 @@
 clear; clc;
 cur = pwd;
 addpath(genpath(cur));
-export_path = fullfile(cur, 'gen/');
-if ~exist(export_path,'dir')
-    mkdir(export_path);
-    addpath(export_path);
+EXPORT_PATH = fullfile(cur, 'gen/');
+if ~exist(EXPORT_PATH,'dir')
+    mkdir(EXPORT_PATH);
+    addpath(EXPORT_PATH);
 end
 
 % Load Settings
@@ -25,32 +25,34 @@ addpath(genpath('urdf'));
 
 %% Create Model and Export Kinematics 
 % Load model
-cassie = CASSIE('urdf/cassie_with_sensors.urdf');
+cassie = Cassie('urdf/cassie_with_sensors.urdf');
+
 
 if load_model
     % Load previously saved model
-    cassie.loadDynamics([export_path,'sym/'], delay_set)
+    cassie.loadDynamics([EXPORT_PATH,'sym/'], delay_set)
 else
     % Export Kinematics
-    if ~exist([export_path,'kin/'],'dir')
-        mkdir([export_path,'kin/']);
+    if ~exist([EXPORT_PATH,'kin/'],'dir')
+        mkdir([EXPORT_PATH,'kin/']);
     end
-    cassie.ExportKinematics([export_path,'kin/']);
+    cassie.ExportKinematics(@Export.export_slrt, [EXPORT_PATH,'kin/']);
+    cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
 
     % Export Dynamics
-    if ~exist([export_path,'dyn/'],'dir')
-        mkdir([export_path,'dyn/']);
+    if ~exist([EXPORT_PATH,'dyn/'],'dir')
+        mkdir([EXPORT_PATH,'dyn/']);
     end
     cassie.configureDynamics('DelayCoriolisSet',false);
-    cassie.compile([export_path,'dyn/']);
+    cassie.compile([EXPORT_PATH,'dyn/']);
     
     % Export Energy
-    cassie.ExportEnergy([export_path,'dyn/']);
+    cassie.ExportEnergy(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
 
     % Save
-    if ~exist([export_path,'sym/'],'dir')
-        mkdir([export_path,'sym/']);
+    if ~exist([EXPORT_PATH,'sym/'],'dir')
+        mkdir([EXPORT_PATH,'sym/']);
     end
-    cassie.saveExpression([export_path,'sym/']);
+    cassie.saveExpression([EXPORT_PATH,'sym/']);
 end
 
