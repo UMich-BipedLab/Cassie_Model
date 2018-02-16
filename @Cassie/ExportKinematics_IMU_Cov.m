@@ -19,10 +19,10 @@ for i = 1:length(joints)
 end
 
 frames = {obj.OtherPoints.VectorNav, joint_frames{:}, obj.ContactPoints.LeftToeBottom};
-[Sigma_I1L, Q_I1L, S_I1L, Sigma_dagger_I1L] = Compute_FK_Covariance(frames, obj.States.x);
+[Q_I1L, S_I1L, Sigma_dagger_I1L, Sigma_I1L, Sigma_R_I1L, Sigma_p_I1L, Jv_I1L, Jw_I1L] = Compute_FK_Covariance(frames, obj.States.x);
 
 frames = {obj.OtherPoints.MultisenseAccelerometerFrame, joint_frames{:}, obj.ContactPoints.LeftToeBottom};
-[Sigma_I2L, Q_I2L, S_I2L, Sigma_dagger_I2L] = Compute_FK_Covariance(frames, obj.States.x);
+[Q_I2L, S_I2L, Sigma_dagger_I2L, Sigma_I2L, Sigma_R_I2L, Sigma_p_I2L, Jv_I2L, Jw_I2L] = Compute_FK_Covariance(frames, obj.States.x);
 
 % Right Foot Contact Frame
 joints = obj.Joints(14:end);
@@ -36,39 +36,55 @@ for i = 1:length(joints)
 end
 
 frames = {obj.OtherPoints.VectorNav, joint_frames{:}, obj.ContactPoints.RightToeBottom};
-[Sigma_I1R, Q_I1R, S_I1R, Sigma_dagger_I1R] = Compute_FK_Covariance(frames, obj.States.x);
+[Q_I1R, S_I1R, Sigma_dagger_I1R, Sigma_I1R, Sigma_R_I1R, Sigma_p_I1R, Jv_I1R, Jw_I1R] = Compute_FK_Covariance(frames, obj.States.x);
 
 frames = {obj.OtherPoints.MultisenseAccelerometerFrame, joint_frames{:}, obj.ContactPoints.RightToeBottom};
-[Sigma_I2R, Q_I2R, S_I2R, Sigma_dagger_I2R] = Compute_FK_Covariance(frames, obj.States.x);
+[Q_I2R, S_I2R, Sigma_dagger_I2R, Sigma_I2R, Sigma_R_I2R, Sigma_p_I2R, Jv_I2R, Jw_I2R] = Compute_FK_Covariance(frames, obj.States.x);
 
 % Export
 N = length(frames)-1;
 sigmas = SymVariable('sigma', [N-1,1]);
 
+export_function(Jv_I1L, 'Jv_VectorNav_to_LeftToeBottom', export_path, {encoders});
+export_function(Jw_I1L, 'Jw_VectorNav_to_LeftToeBottom', export_path, {encoders});
 export_function(Sigma_I1L, 'Sigma_VectorNav_to_LeftToeBottom', export_path, {encoders, sigmas});
-export_function(Q_I1L, 'Q_VectorNav_to_LeftToeBottom', export_path, {encoders, sigmas});
-export_function(S_I1L, 'S_VectorNav_to_LeftToeBottom', export_path, {encoders, sigmas});
-export_function(Sigma_dagger_I1L, 'Sigma_dagger_VectorNav_to_LeftToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_R_I1L, 'Sigma_R_VectorNav_to_LeftToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_p_I1L, 'Sigma_p_VectorNav_to_LeftToeBottom', export_path, {encoders, sigmas});
+export_function(Q_I1L, 'Q_VectorNav_to_LeftToeBottom', export_path, {encoders});
+export_function(S_I1L, 'S_VectorNav_to_LeftToeBottom', export_path, {encoders});
+export_function(Sigma_dagger_I1L, 'Sigma_dagger_VectorNav_to_LeftToeBottom', export_path, {sigmas});
 
+export_function(Jv_I1R, 'Jv_VectorNav_to_RightToeBottom', export_path, {encoders});
+export_function(Jw_I1R, 'Jw_VectorNav_to_RightToeBottom', export_path, {encoders});
 export_function(Sigma_I1R, 'Sigma_VectorNav_to_RightToeBottom', export_path, {encoders, sigmas});
-export_function(Q_I1R, 'Q_VectorNav_to_RightToeBottom', export_path, {encoders, sigmas});
-export_function(S_I1R, 'S_VectorNav_to_RightToeBottom', export_path, {encoders, sigmas});
-export_function(Sigma_dagger_I1R, 'Sigma_dagger_VectorNav_to_RightToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_R_I1R, 'Sigma_R_VectorNav_to_RightToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_p_I1R, 'Sigma_p_VectorNav_to_RightToeBottom', export_path, {encoders, sigmas});
+export_function(Q_I1R, 'Q_VectorNav_to_RightToeBottom', export_path, {encoders});
+export_function(S_I1R, 'S_VectorNav_to_RightToeBottom', export_path, {encoders});
+export_function(Sigma_dagger_I1R, 'Sigma_dagger_VectorNav_to_RightToeBottom', export_path, {sigmas});
 
+export_function(Jv_I2L, 'Jv_MultisenseIMU_to_LeftToeBottom', export_path, {encoders});
+export_function(Jw_I2L, 'Jw_MultisenseIMU_to_LeftToeBottom', export_path, {encoders});
 export_function(Sigma_I2L, 'Sigma_MultisenseIMU_to_LeftToeBottom', export_path, {encoders, sigmas});
-export_function(Q_I2L, 'Q_MultisenseIMU_to_LeftToeBottom', export_path, {encoders, sigmas});
-export_function(S_I2L, 'S_MultisenseIMU_to_LeftToeBottom', export_path, {encoders, sigmas});
-export_function(Sigma_dagger_I2L, 'Sigma_dagger_MultisenseIMU_to_LeftToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_R_I2L, 'Sigma_R_MultisenseIMU_to_LeftToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_p_I2L, 'Sigma_p_MultisenseIMU_to_LeftToeBottom', export_path, {encoders, sigmas});
+export_function(Q_I2L, 'Q_MultisenseIMU_to_LeftToeBottom', export_path, {encoders});
+export_function(S_I2L, 'S_MultisenseIMU_to_LeftToeBottom', export_path, {encoders});
+export_function(Sigma_dagger_I2L, 'Sigma_dagger_MultisenseIMU_to_LeftToeBottom', export_path, {sigmas});
 
+export_function(Jv_I2R, 'Jv_MultisenseIMU_to_RightToeBottom', export_path, {encoders});
+export_function(Jw_I2R, 'Jw_MultisenseIMU_to_RightToeBottom', export_path, {encoders});
 export_function(Sigma_I2R, 'Sigma_MultisenseIMU_to_RightToeBottom', export_path, {encoders, sigmas});
-export_function(Q_I2R, 'Q_MultisenseIMU_to_RightToeBottom', export_path, {encoders, sigmas});
-export_function(S_I2R, 'S_MultisenseIMU_to_RightToeBottom', export_path, {encoders, sigmas});
-export_function(Sigma_dagger_I2R, 'Sigma_dagger_MultisenseIMU_to_RightToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_R_I2R, 'Sigma_R_MultisenseIMU_to_RightToeBottom', export_path, {encoders, sigmas});
+export_function(Sigma_p_I2R, 'Sigma_p_MultisenseIMU_to_RightToeBottom', export_path, {encoders, sigmas});
+export_function(Q_I2R, 'Q_MultisenseIMU_to_RightToeBottom', export_path, {encoders});
+export_function(S_I2R, 'S_MultisenseIMU_to_RightToeBottom', export_path, {encoders});
+export_function(Sigma_dagger_I2R, 'Sigma_dagger_MultisenseIMU_to_RightToeBottom', export_path, {sigmas});
 
 end
 
 
-function [ Sigma, Q, S, Sigma_dagger] = Compute_FK_Covariance( frames, x )
+function [Q, S, Sigma_dagger, Sigma, Sigma_R, Sigma_p, Jv, Jw] = Compute_FK_Covariance( frames, x )
 % Computes covariance matrix for rotational/translational noise
 %   
 %   Author: Ross Hartley
@@ -78,50 +94,65 @@ function [ Sigma, Q, S, Sigma_dagger] = Compute_FK_Covariance( frames, x )
 N = length(frames)-1;
 sigmas = SymVariable('sigma', [N-1,1]);
 
-H1 = frames{1}.computeForwardKinematics;
-HN1 = frames{N+1}.computeForwardKinematics;
-A1 = H1(1:3,1:3);
-AN1 = HN1(1:3,1:3);
-A1N1 = A1'*AN1;
+Hw1 = frames{1}.computeForwardKinematics;
+HwN1 = frames{N+1}.computeForwardKinematics;
+H1N1 = Hw1\HwN1;
 
 for i = 1:(N-1)
-    Hi1 = frames{i+1}.computeForwardKinematics;
+    Hwi1 = frames{i+1}.computeForwardKinematics;
+    H1i1 = Hw1\Hwi1;
     sigma_i_dagger = frames{i+1}.Reference.Axis' * sigmas(i);
-    A1i1 = A1'*Hi1(1:3,1:3); % Rotation from 1 to i+1
-    AiN1 = A1i1'*A1N1;       % Rotation from i+1 to N+1 (Contact)
+    Hi1N1 = Hwi1\HwN1; % Transform from i+1 to N+1 (Contact)
     
     for n = i:(N-1)
-        Hn1 = frames{n+1}.computeForwardKinematics;
-        Hn2 = frames{n+2}.computeForwardKinematics;
-        Hn1n2 = Hn1\Hn2;
+        Hwn1 = frames{n+1}.computeForwardKinematics;
+        Hwn2 = frames{n+2}.computeForwardKinematics;
+        Hn1n2 = Hwn1\Hwn2;
         tn1 = Hn1n2(1:3,end); 
         tn1 = subs(tn1, x, zeros(20,1)); % Should be a constant
         
         % Translation from n to n + 1
-        A1n1 = A1'*Hn1(1:3,1:3); % Rotation from 1 to n+1
-        Ai1n1 = A1i1'*A1n1;      % Rotation from i+1 to n+1
+        H1n1 = Hw1\Hwn1;   % Transform from 1 to n+1
+        Hi1n1 = Hwi1\Hwn1; % Transform from i+1 to n+1
+        
         % Compute Sum
         if n == i
-            Si_sum = A1n1*Angles.skew(tn1)*Ai1n1';
+            Si_sum = H1n1(1:3,1:3)*Angles.skew(tn1)*Hi1n1(1:3,1:3)';
         else
-            Si_sum = Si_sum + A1n1*Angles.skew(tn1)*Ai1n1';
+            Si_sum = Si_sum + H1n1(1:3,1:3)*Angles.skew(tn1)*Hi1n1(1:3,1:3)';
         end
     end
+    
+    % Used for computing manipulator jacobian
+    zi = H1i1(1:3,1:3)*frames{i+1}.Reference.Axis';
+    On = H1N1(1:3,end);
+    Oi = H1i1(1:3,end);
 
     % Build Covariance Matrix
     if i == 1
-        Q = AiN1(1:3,1:3)';
+        Jv = cross(zi', On - Oi)';
+        Jw = zi;
+        Q = Hi1N1(1:3,1:3)';
         S = -Si_sum;
         sigma_dagger = sigma_i_dagger;
     else
-        Q = [Q, AiN1(1:3,1:3)'];
+        Jv = [Jv, cross(zi', On - Oi)'];
+        Jw = [Jw, zi];
+        Q = [Q, Hi1N1(1:3,1:3)'];
         S = [S, -Si_sum];
         sigma_dagger = [sigma_dagger; sigma_i_dagger];
     end
 end
+Jv = subs(Jv, x(1:6), zeros(6,1));
+Jw = subs(Jw, x(1:6), zeros(6,1));
+J = [Jw; Jv];
 Q = subs(Q, x(1:6), zeros(6,1));  
 S = subs(S, x(1:6), zeros(6,1)); 
-Sigma_dagger = diag(sigma_dagger);
+Sigma_dagger = abs(diag(sigma_dagger));
 Sigma = [Q; S] * Sigma_dagger * [Q; S].';
+Sigma_R = Q * Sigma_dagger * Q.';
+Sigma_p = S * Sigma_dagger * S.';
 
 end
+
+
