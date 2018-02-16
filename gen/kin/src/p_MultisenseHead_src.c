@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:33:09 GMT-05:00
+ * Fri 16 Feb 2018 12:16:08 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,19 +53,19 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t454;
-  double t1376;
-  double t1127;
-  double t368;
-  double t1426;
-  t454 = Cos(var1[5]);
-  t1376 = Sin(var1[3]);
-  t1127 = Sin(var1[4]);
-  t368 = Cos(var1[3]);
-  t1426 = Sin(var1[5]);
-  p_output1[0]=0.25*(t1376*t1426 + t1127*t368*t454) + var1[0];
-  p_output1[1]=0.25*(-1.*t1426*t368 + t1127*t1376*t454) + var1[1];
-  p_output1[2]=0.25*t454*Cos(var1[4]) + var1[2];
+  double t1771;
+  double t2064;
+  double t1857;
+  double t798;
+  double t2193;
+  t1771 = Cos(var1[5]);
+  t2064 = Sin(var1[3]);
+  t1857 = Sin(var1[4]);
+  t798 = Cos(var1[3]);
+  t2193 = Sin(var1[5]);
+  p_output1[0]=0.25*(t2064*t2193 + t1771*t1857*t798) + var1[0];
+  p_output1[1]=0.25*(t1771*t1857*t2064 - 1.*t2193*t798) + var1[1];
+  p_output1[2]=0.25*t1771*Cos(var1[4]) + var1[2];
 }
 
 

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:32:33 GMT-05:00
+ * Fri 16 Feb 2018 12:15:34 GMT-05:00
  */
 
 #ifndef H_HIP_ROTATION_RIGHT_MEX_HH

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:33:33 GMT-05:00
+ * Fri 16 Feb 2018 12:16:34 GMT-05:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -45,45 +45,45 @@ const double Degree = 0.01745329251994329576924;
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t338;
-  double t3446;
-  double t340;
-  double t143;
-  double t5309;
-  double t5368;
-  double t5373;
-  double t5377;
-  double t5380;
-  double t5390;
-  double t5393;
-  double t5394;
-  t338 = Cos(var1[5]);
-  t3446 = Sin(var1[3]);
-  t340 = Sin(var1[4]);
-  t143 = Cos(var1[3]);
-  t5309 = Sin(var1[5]);
-  t5368 = Cos(var1[4]);
-  t5373 = -1.*t338*t3446;
-  t5377 = t143*t340*t5309;
-  t5380 = t5373 + t5377;
-  t5390 = t143*t338;
-  t5393 = t3446*t340*t5309;
-  t5394 = t5390 + t5393;
-  p_output1[0]=-1.*t143*t338*t340 - 1.*t3446*t5309;
-  p_output1[1]=-1.*t338*t340*t3446 + t143*t5309;
-  p_output1[2]=-1.*t338*t5368;
+  double t3656;
+  double t5496;
+  double t3708;
+  double t2261;
+  double t5628;
+  double t5707;
+  double t5711;
+  double t5713;
+  double t5719;
+  double t5727;
+  double t5733;
+  double t5738;
+  t3656 = Cos(var1[5]);
+  t5496 = Sin(var1[3]);
+  t3708 = Sin(var1[4]);
+  t2261 = Cos(var1[3]);
+  t5628 = Sin(var1[5]);
+  t5707 = Cos(var1[4]);
+  t5711 = -1.*t3656*t5496;
+  t5713 = t2261*t3708*t5628;
+  t5719 = t5711 + t5713;
+  t5727 = t2261*t3656;
+  t5733 = t5496*t3708*t5628;
+  t5738 = t5727 + t5733;
+  p_output1[0]=-1.*t2261*t3656*t3708 - 1.*t5496*t5628;
+  p_output1[1]=-1.*t3656*t3708*t5496 + t2261*t5628;
+  p_output1[2]=-1.*t3656*t5707;
   p_output1[3]=0;
-  p_output1[4]=t5380;
-  p_output1[5]=t5394;
-  p_output1[6]=t5309*t5368;
+  p_output1[4]=t5719;
+  p_output1[5]=t5738;
+  p_output1[6]=t5628*t5707;
   p_output1[7]=0;
-  p_output1[8]=t143*t5368;
-  p_output1[9]=t3446*t5368;
-  p_output1[10]=-1.*t340;
+  p_output1[8]=t2261*t5707;
+  p_output1[9]=t5496*t5707;
+  p_output1[10]=-1.*t3708;
   p_output1[11]=0;
-  p_output1[12]=0.24925*(t143*t338*t340 + t3446*t5309) + 0.047*t143*t5368 + 0.0302*t5380 + var1[0];
-  p_output1[13]=0.24925*(t338*t340*t3446 - 1.*t143*t5309) + 0.047*t3446*t5368 + 0.0302*t5394 + var1[1];
-  p_output1[14]=-0.047*t340 + 0.24925*t338*t5368 + 0.0302*t5309*t5368 + var1[2];
+  p_output1[12]=0.24925*(t2261*t3656*t3708 + t5496*t5628) + 0.047*t2261*t5707 + 0.0302*t5719 + var1[0];
+  p_output1[13]=0.24925*(t3656*t3708*t5496 - 1.*t2261*t5628) + 0.047*t5496*t5707 + 0.0302*t5738 + var1[1];
+  p_output1[14]=-0.047*t3708 + 0.24925*t3656*t5707 + 0.0302*t5628*t5707 + var1[2];
   p_output1[15]=1.;
 }
 

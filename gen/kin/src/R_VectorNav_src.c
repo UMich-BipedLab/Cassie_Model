@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:33:43 GMT-05:00
+ * Fri 16 Feb 2018 12:16:44 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,27 +53,27 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t1435;
-  double t1438;
-  double t818;
-  double t3709;
-  double t4575;
-  double t4941;
-  t1435 = Cos(var1[4]);
-  t1438 = Sin(var1[3]);
-  t818 = Cos(var1[3]);
-  t3709 = Sin(var1[4]);
-  t4575 = Cos(var1[5]);
-  t4941 = Sin(var1[5]);
-  p_output1[0]=t1435*t818;
-  p_output1[1]=t1435*t1438;
-  p_output1[2]=-1.*t3709;
-  p_output1[3]=t1438*t4575 - 1.*t3709*t4941*t818;
-  p_output1[4]=-1.*t1438*t3709*t4941 - 1.*t4575*t818;
-  p_output1[5]=-1.*t1435*t4941;
-  p_output1[6]=-1.*t1438*t4941 - 1.*t3709*t4575*t818;
-  p_output1[7]=-1.*t1438*t3709*t4575 + t4941*t818;
-  p_output1[8]=-1.*t1435*t4575;
+  double t1275;
+  double t2467;
+  double t953;
+  double t2765;
+  double t3730;
+  double t4134;
+  t1275 = Cos(var1[4]);
+  t2467 = Sin(var1[3]);
+  t953 = Cos(var1[3]);
+  t2765 = Sin(var1[4]);
+  t3730 = Cos(var1[5]);
+  t4134 = Sin(var1[5]);
+  p_output1[0]=t1275*t953;
+  p_output1[1]=t1275*t2467;
+  p_output1[2]=-1.*t2765;
+  p_output1[3]=t2467*t3730 - 1.*t2765*t4134*t953;
+  p_output1[4]=-1.*t2467*t2765*t4134 - 1.*t3730*t953;
+  p_output1[5]=-1.*t1275*t4134;
+  p_output1[6]=-1.*t2467*t4134 - 1.*t2765*t3730*t953;
+  p_output1[7]=-1.*t2467*t2765*t3730 + t4134*t953;
+  p_output1[8]=-1.*t1275*t3730;
 }
 
 

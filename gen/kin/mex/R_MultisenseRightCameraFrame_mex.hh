@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:33:19 GMT-05:00
+ * Fri 16 Feb 2018 12:16:18 GMT-05:00
  */
 
 #ifndef R_MULTISENSERIGHTCAMERAFRAME_MEX_HH

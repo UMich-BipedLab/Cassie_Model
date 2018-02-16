@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:33:34 GMT-05:00
+ * Fri 16 Feb 2018 12:16:35 GMT-05:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -45,27 +45,27 @@ const double Degree = 0.01745329251994329576924;
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t2639;
-  double t3757;
-  double t2821;
-  double t2580;
-  double t5367;
-  double t5406;
-  t2639 = Cos(var1[5]);
-  t3757 = Sin(var1[3]);
-  t2821 = Sin(var1[4]);
-  t2580 = Cos(var1[3]);
-  t5367 = Sin(var1[5]);
-  t5406 = Cos(var1[4]);
-  p_output1[0]=-1.*t2580*t2639*t2821 - 1.*t3757*t5367;
-  p_output1[1]=-1.*t2639*t2821*t3757 + t2580*t5367;
-  p_output1[2]=-1.*t2639*t5406;
-  p_output1[3]=-1.*t2639*t3757 + t2580*t2821*t5367;
-  p_output1[4]=t2580*t2639 + t2821*t3757*t5367;
-  p_output1[5]=t5367*t5406;
-  p_output1[6]=t2580*t5406;
-  p_output1[7]=t3757*t5406;
-  p_output1[8]=-1.*t2821;
+  double t5154;
+  double t5706;
+  double t5190;
+  double t2828;
+  double t5709;
+  double t5750;
+  t5154 = Cos(var1[5]);
+  t5706 = Sin(var1[3]);
+  t5190 = Sin(var1[4]);
+  t2828 = Cos(var1[3]);
+  t5709 = Sin(var1[5]);
+  t5750 = Cos(var1[4]);
+  p_output1[0]=-1.*t2828*t5154*t5190 - 1.*t5706*t5709;
+  p_output1[1]=-1.*t5154*t5190*t5706 + t2828*t5709;
+  p_output1[2]=-1.*t5154*t5750;
+  p_output1[3]=-1.*t5154*t5706 + t2828*t5190*t5709;
+  p_output1[4]=t2828*t5154 + t5190*t5706*t5709;
+  p_output1[5]=t5709*t5750;
+  p_output1[6]=t2828*t5750;
+  p_output1[7]=t5706*t5750;
+  p_output1[8]=-1.*t5190;
 }
 
 

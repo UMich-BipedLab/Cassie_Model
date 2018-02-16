@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:31:53 GMT-05:00
+ * Fri 16 Feb 2018 12:14:59 GMT-05:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,61 +53,61 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t109;
-  double t127;
-  double t130;
-  double t128;
-  double t131;
+  double t73;
+  double t91;
+  double t94;
+  double t92;
+  double t95;
+  double t82;
+  double t93;
+  double t96;
+  double t97;
+  double t99;
+  double t100;
+  double t101;
+  double t102;
+  double t75;
+  double t86;
+  double t88;
+  double t89;
+  double t90;
+  double t103;
+  double t104;
+  double t113;
+  double t114;
+  double t115;
+  double t117;
   double t118;
-  double t129;
-  double t132;
-  double t133;
-  double t135;
-  double t136;
-  double t137;
-  double t138;
-  double t111;
-  double t122;
-  double t124;
-  double t125;
-  double t126;
-  double t139;
-  double t140;
-  double t149;
-  double t150;
-  double t151;
-  double t153;
-  double t154;
-  double t155;
-  t109 = Cos(var1[3]);
-  t127 = Cos(var1[5]);
-  t130 = Sin(var1[4]);
-  t128 = Sin(var1[3]);
-  t131 = Sin(var1[5]);
-  t118 = Cos(var1[6]);
-  t129 = -1.*t127*t128;
-  t132 = t109*t130*t131;
-  t133 = t129 + t132;
-  t135 = t109*t127*t130;
-  t136 = t128*t131;
-  t137 = t135 + t136;
-  t138 = Sin(var1[6]);
-  t111 = Cos(var1[4]);
-  t122 = -1.*t118;
-  t124 = 1. + t122;
-  t125 = 0.135*t124;
-  t126 = 0. + t125;
-  t139 = -0.135*t138;
-  t140 = 0. + t139;
-  t149 = t109*t127;
-  t150 = t128*t130*t131;
-  t151 = t149 + t150;
-  t153 = t127*t128*t130;
-  t154 = -1.*t109*t131;
-  t155 = t153 + t154;
-  p_output1[0]=0. - 0.049*t109*t111 + t126*t133 + 0.135*(t118*t133 + t137*t138) + t137*t140 + var1[0];
-  p_output1[1]=0. - 0.049*t111*t128 + t126*t151 + t140*t155 + 0.135*(t118*t151 + t138*t155) + var1[1];
-  p_output1[2]=0. + 0.049*t130 + t111*t126*t131 + 0.135*(t111*t118*t131 + t111*t127*t138) + t111*t127*t140 + var1[2];
+  double t119;
+  t73 = Cos(var1[3]);
+  t91 = Cos(var1[5]);
+  t94 = Sin(var1[4]);
+  t92 = Sin(var1[3]);
+  t95 = Sin(var1[5]);
+  t82 = Cos(var1[6]);
+  t93 = -1.*t91*t92;
+  t96 = t73*t94*t95;
+  t97 = t93 + t96;
+  t99 = t73*t91*t94;
+  t100 = t92*t95;
+  t101 = t99 + t100;
+  t102 = Sin(var1[6]);
+  t75 = Cos(var1[4]);
+  t86 = -1.*t82;
+  t88 = 1. + t86;
+  t89 = 0.135*t88;
+  t90 = 0. + t89;
+  t103 = -0.135*t102;
+  t104 = 0. + t103;
+  t113 = t73*t91;
+  t114 = t92*t94*t95;
+  t115 = t113 + t114;
+  t117 = t91*t92*t94;
+  t118 = -1.*t73*t95;
+  t119 = t117 + t118;
+  p_output1[0]=0. + t101*t104 - 0.049*t73*t75 + t90*t97 + 0.135*(t101*t102 + t82*t97) + var1[0];
+  p_output1[1]=0. + t104*t119 + 0.135*(t102*t119 + t115*t82) + t115*t90 - 0.049*t75*t92 + var1[1];
+  p_output1[2]=0. + t104*t75*t91 + 0.049*t94 + t75*t90*t95 + 0.135*(t102*t75*t91 + t75*t82*t95) + var1[2];
 }
 
 

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 15 Nov 2017 08:33:38 GMT-05:00
+ * Fri 16 Feb 2018 12:16:39 GMT-05:00
  */
 
 #ifndef R_MULTISENSEGYROSCOPEFRAME_MEX_HH

@@ -27,7 +27,6 @@ addpath(genpath('urdf'));
 % Load model
 cassie = Cassie('urdf/cassie_with_sensors.urdf');
 
-
 if load_model
     % Load previously saved model
     cassie.loadDynamics([EXPORT_PATH,'sym/'], delay_set)
@@ -35,10 +34,12 @@ else
     % Export Kinematics
     if ~exist([EXPORT_PATH,'kin/'],'dir')
         mkdir([EXPORT_PATH,'kin/']);
+        mkdir([EXPORT_PATH,'kin_eigen/']);
     end
     cassie.ExportKinematics(@Export.export_slrt, [EXPORT_PATH,'kin/']);
     cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
-
+    cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
+        
     % Export Dynamics
     if ~exist([EXPORT_PATH,'dyn/'],'dir')
         mkdir([EXPORT_PATH,'dyn/']);
@@ -55,4 +56,6 @@ else
     end
     cassie.saveExpression([EXPORT_PATH,'sym/']);
 end
+
+
 
