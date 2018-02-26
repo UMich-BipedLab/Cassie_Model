@@ -37,9 +37,7 @@ else
         mkdir([EXPORT_PATH,'kin_eigen/']);
     end
     cassie.ExportKinematics(@Export.export_slrt, [EXPORT_PATH,'kin/']);
-    cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
-    cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
-        
+
     % Export Dynamics
     if ~exist([EXPORT_PATH,'dyn/'],'dir')
         mkdir([EXPORT_PATH,'dyn/']);
@@ -56,6 +54,19 @@ else
     end
     cassie.saveExpression([EXPORT_PATH,'sym/']);
 end
+
+%% Compute Manipulator Jacobians
+cassie = Cassie('urdf/cassie_with_sensors.urdf');
+cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
+cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
+    
+cassie = Cassie('urdf/cassie_with_sensors_vectorNav.urdf');
+cassie.ExportManipulatorJacobians(@Export.export_slrt, [EXPORT_PATH,'kin/']);
+cassie.ExportManipulatorJacobians(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
+
+
+
+
 
 
 
