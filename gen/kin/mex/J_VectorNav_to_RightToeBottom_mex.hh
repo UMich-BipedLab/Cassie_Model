@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 26 Feb 2018 15:49:12 GMT-05:00
+ * Fri 16 Mar 2018 12:15:58 GMT-04:00
  */
 
 #ifndef J_VECTORNAV_TO_RIGHTTOEBOTTOM_MEX_HH
@@ -27,7 +27,7 @@ namespace SymExpression
 
 	
     // - Outputs
-    assert_size_matrix(p_output1, 6, 14);
+    assert_size_matrix(p_output1, 3, 14);
 
 
     // set zero the matrix

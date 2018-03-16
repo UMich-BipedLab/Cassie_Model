@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Mon 26 Feb 2018 15:42:59 GMT-05:00
+ * Fri 16 Mar 2018 12:16:34 GMT-04:00
  */
 
 #ifndef R_VECTORNAV_TO_MULTISENSELEFTOPTICALFRAME_HH

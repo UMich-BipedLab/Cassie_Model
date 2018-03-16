@@ -42,10 +42,12 @@ export_function(H_I1B(1:3,end), 'p_VectorNav_to_Pelvis', export_path, encoders);
 export_function(H_I1R, 'H_VectorNav_to_RightToeBottom', export_path, encoders);
 export_function(H_I1R(1:3,1:3), 'R_VectorNav_to_RightToeBottom', export_path, encoders);
 export_function(H_I1R(1:3,end), 'p_VectorNav_to_RightToeBottom', export_path, encoders);
+export_function(jacobian(H_I1R(1:3,end),encoders), 'J_VectorNav_to_RightToeBottom', export_path, encoders);
 
 export_function(H_I1L, 'H_VectorNav_to_LeftToeBottom', export_path, encoders);
 export_function(H_I1L(1:3,1:3), 'R_VectorNav_to_LeftToeBottom', export_path, encoders);
 export_function(H_I1L(1:3,end), 'p_VectorNav_to_LeftToeBottom', export_path, encoders);
+export_function(jacobian(H_I1L(1:3,end),encoders), 'J_VectorNav_to_LeftToeBottom', export_path, encoders);
 
 export_function(H_I1C, 'H_VectorNav_to_MultisenseLeftOpticalFrame', export_path, encoders);
 export_function(H_I1C(1:3,1:3), 'R_VectorNav_to_MultisenseLeftOpticalFrame', export_path, encoders);
