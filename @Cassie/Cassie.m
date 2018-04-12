@@ -84,6 +84,25 @@ classdef Cassie < RobotLinks
                 'Offset',[0.0177, 0.0522, 0],...
                 'R',R...
                 );
+            obj.ContactPoints.LeftToeFront = CoordinateFrame(...
+                'Name','LeftToeFront',...
+                'Reference',obj.ContactPoints.LeftToeBottom,...
+                'Offset',[0,0.09,0],...
+                'R',eye(3) ...
+                );
+            obj.ContactPoints.LeftToeBack = CoordinateFrame(...
+                'Name','LeftToeBack',...
+                'Reference',obj.ContactPoints.LeftToeBottom,...
+                'Offset',[0,-0.09,0],...
+                'R',eye(3) ...
+                );
+            
+            left_toe_front = ToContactFrame(obj.ContactPoints.LeftToeFront,...
+                'PointContactWithFriction');
+            obj = addContact(obj,left_toe_front);
+            left_toe_back = ToContactFrame(obj.ContactPoints.LeftToeBack,...
+                'PointContactWithFriction');
+            obj = addContact(obj,left_toe_back);
             
             r_foot_frame = obj.Joints(getJointIndices(obj, 'toe_joint_right'));
             obj.ContactPoints.RightToeBottom = CoordinateFrame(...
@@ -92,7 +111,25 @@ classdef Cassie < RobotLinks
                 'Offset',[0.0177, 0.0522, 0],...
                 'R',R...
                 );
+            obj.ContactPoints.RightToeFront = CoordinateFrame(...
+                'Name','RightToeFront',...
+                'Reference',obj.ContactPoints.RightToeBottom,...
+                'Offset',[0,0.09,0],...
+                'R',eye(3) ...
+                );
+            obj.ContactPoints.RightToeBack = CoordinateFrame(...
+                'Name','RightToeBack',...
+                'Reference',obj.ContactPoints.RightToeBottom,...
+                'Offset',[0,-0.09,0],...
+                'R',eye(3) ...
+                );
             
+            right_toe_front = ToContactFrame(obj.ContactPoints.RightToeFront,...
+                'PointContactWithFriction');
+            obj = addContact(obj,right_toe_front);
+            right_toe_back = ToContactFrame(obj.ContactPoints.RightToeBack,...
+                'PointContactWithFriction');
+            obj = addContact(obj,right_toe_back);
             %% define other frames
             pelvis_frame = obj.Joints(getJointIndices(obj, 'BaseRotX'));
             
@@ -166,7 +203,33 @@ classdef Cassie < RobotLinks
                     );
             end
             
+            % phase variable: time
+            t = SymVariable('t');
+            p = SymVariable('p',[2,1]);
+            tau = (t-p(2))/(p(1)-p(2));
             
+            % relative degree two outputs:
+            x = obj.States.x;
+            
+            
+            y2_label = {'hip_abduction_left',...
+                'hip_rotation_left',...
+                'hip_flexion_left',...
+                'knee_joint_left',...
+                'toe_joint_left',...
+                'hip_abduction_right',...
+                'hip_rotation_right',...
+                'hip_flexion_right',...
+                'knee_joint_right',...
+                'toe_joint_right'};
+            
+            ya_2 = tomatrix(x(getJointIndices(obj,y2_label)));
+            
+            y2 = VirtualConstraint(obj,ya_2,'output','DesiredType','Bezier','PolyDegree',5,...
+                'RelativeDegree',2,'OutputLabel',{y2_label},'PhaseType','TimeBased',...
+                'PhaseVariable',tau,'PhaseParams',p,'Holonomic',true, 'LoadPath', []);
+            
+            obj = addVirtualConstraint(obj,y2);
             
         end
         
@@ -244,6 +307,127 @@ classdef Cassie < RobotLinks
             
         end
 
+        function ExportCoM(obj, export_function, export_path)
+            % Generates code for forward kinematics
+            
+            if ~exist(export_path,'dir')
+                mkdir(export_path);
+                addpath(export_path);
+            end
+            
+            p_com = obj.getComPosition();
+            J_com = jacobian(p_com, obj.States.x);
+            v_com = J_com*obj.States.dx;
+            export_function(p_com, ['pcom_', obj.Name], export_path, obj.States.x);
+            export_function(v_com, ['vcom_', obj.Name], export_path, {obj.States.x, obj.States.dx});
+            
+        end
+        
+        function ExportDynamics(obj, export_function, export_path)
+            % Generates code for system dynamics
+            
+            if ~exist(export_path,'dir')
+                mkdir(export_path);
+                addpath(export_path);
+            end
+            
+            n_link = length(obj.Links);
+            links = getTwists(obj.Links);
+            for i=1:n_link
+                links{i}.Mass = obj.Links(i).Mass;
+                links{i}.Inertia = obj.Links(i).Inertia;
+            end
+    
+            De = eval_math_fun('InertiaMatrix',[links,{obj.numState}]);
+            
+            De_motor = zeros(obj.numState);
+            for i=1:obj.numState
+                if ~isempty(obj.Joints(i).Actuator)
+                    actuator = obj.Joints(i).Actuator;
+                    
+                    if ~isempty(actuator.Inertia) && ~isempty(actuator.Ratio)
+                        % reflected motor inertia: I*r^2
+                        De_motor(i,i) = actuator.Inertia * actuator.Ratio^2;
+                        
+                    end
+                end
+                
+            end
+            
+            De_full = De + De_motor;
+            
+            
+            export_function(De_full, ['De_', obj.Name], export_path, obj.States.x);
+            
+            Ge = eval_math_fun('GravityVector',[links,{obj.States.x}]);
+            export_function(Ge, ['Ge_', obj.Name], export_path, {obj.States.x});
+            
+            Ce = eval_math_fun('InertiaToCoriolis',{De_full,obj.States.x, obj.States.dx});
+            export_function(Ce, ['Ce_', obj.Name], export_path, {obj.States.x, obj.States.dx});
+        end
+        
+        
+        function ExportHolonomicConstraints(obj, export_function, export_path)
+            % Generates code for holonomic constraints
+            
+            if ~exist(export_path,'dir')
+                mkdir(export_path);
+                addpath(export_path);
+            end
+            
+            h_constr_names = fieldnames(obj.HolonomicConstraints);
+            if ~isempty(h_constr_names)
+                for i=1:length(h_constr_names)
+                    constr_name = h_constr_names{i};
+                    constr = obj.HolonomicConstraints.(constr_name);
+                    export_function(SymExpression(constr.ConstrJac), constr.Jh_name, export_path, obj.States.x);
+                    export_function(SymExpression(constr.ConstrJacDot), constr.dJh_name, export_path, {obj.States.x,obj.States.dx});
+                end
+                
+            end
+            
+        end
+        
+        function ExportMomentum(obj, export_function, export_path)
+            % Generates code for forward kinematics
+            
+            if ~exist(export_path,'dir')
+                mkdir(export_path);
+                addpath(export_path);
+            end
+            
+            pcom = obj.getComPosition();
+            Ag = zeros(6,obj.numState);
+            n_link = length(obj.Links);
+            Jb = cell(obj.numState,1);
+            R = cell(obj.numState,1);
+            p = cell(obj.numState,1);
+            I = cell(obj.numState,1);
+            Xg = cell(obj.numState,1);
+            A = cell(obj.numState,1);
+            for i=1:n_link
+                frame = obj.Links(i);
+                Jb{i} = getBodyJacobian(obj,frame);
+                gst = computeForwardKinematics(frame);
+                R{i} = frame.RigidOrientation(gst);
+                p{i} = frame.RigidPosition(gst);
+                I{i} = blkdiag(frame.Mass*eye(3),frame.Inertia);
+                Xg{i} = [ R{i}', -R{i}'*Angles.skew(p{i}-pcom'); zeros(3), R{i}' ];
+                A{i} =  Xg{i}'*I{i}*Jb{i};
+                Ag = Ag + A{i};
+                %     vb{i} = Jb{i}*dq;
+                %     h{i} = I{i}*Jb{i}*dq;
+                %         De = De + Jb{i}'*I{i}*Jb{i};
+                %         KE = KE + 0.5 * dq'*Jb{i}'*I{i}*Jb{i}*dq;
+                %     h_tot = h_tot + Xg{i}'*h{i};
+            end
+            hg = Ag*obj.States.dx;
+            dAg = jacobian(Ag*obj.States.dx,obj.States.x);
+           
+            export_function(hg, ['hg_',obj.Name], export_path, {obj.States.x,obj.States.dx});
+            export_function(Ag, ['Ag_',obj.Name], export_path, {obj.States.x});
+            export_function(dAg, ['dAg_',obj.Name], export_path, {obj.States.x,obj.States.dx});
+        end
     end
     
     
