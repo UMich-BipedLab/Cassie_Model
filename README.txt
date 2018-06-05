@@ -6,7 +6,7 @@ q2 - y
 q3 - z
 q4 - yaw
 q5 - pitch
-q6 - rol
+q6 - roll
 
 Left side joints
 q7 - hip abduction
