@@ -56,7 +56,6 @@ else
 end
 
 %% Compute Manipulator Jacobians
-cassie = Cassie('urdf/cassie_with_sensors.urdf');
 if ~exist([EXPORT_PATH,'kin/'],'dir')
     mkdir([EXPORT_PATH,'kin/']);
     mkdir([EXPORT_PATH,'kin_eigen/']);
@@ -64,7 +63,6 @@ end
 cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
 cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
     
-cassie = Cassie('urdf/cassie_with_sensors_vectorNav.urdf');
 cassie.ExportManipulatorJacobians(@Export.export_slrt, [EXPORT_PATH,'kin/']);
 cassie.ExportManipulatorJacobians(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
 

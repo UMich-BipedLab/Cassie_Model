@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 16 Mar 2018 11:09:12 GMT-04:00
+ * Mon 2 Jul 2018 15:35:06 GMT-04:00
  */
 
 #ifndef R_VECTORNAV_MEX_HH

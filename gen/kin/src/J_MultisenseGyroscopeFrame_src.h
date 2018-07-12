@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 16 Mar 2018 11:09:07 GMT-04:00
+ * Mon 2 Jul 2018 15:35:00 GMT-04:00
  */
 
 #ifndef J_MULTISENSEGYROSCOPEFRAME_SRC_HH

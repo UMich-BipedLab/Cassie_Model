@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 16 Mar 2018 11:07:41 GMT-04:00
+ * Mon 2 Jul 2018 15:32:42 GMT-04:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,15 +53,15 @@ INLINE double Tanh(double x) { return tanh(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t12;
-  double t11;
-  t12 = Sin(var1[3]);
-  t11 = Cos(var1[3]);
-  p_output1[0]=t11;
-  p_output1[1]=t12;
+  double t230;
+  double t229;
+  t230 = Sin(var1[3]);
+  t229 = Cos(var1[3]);
+  p_output1[0]=t229;
+  p_output1[1]=t230;
   p_output1[2]=0;
-  p_output1[3]=-1.*t12;
-  p_output1[4]=t11;
+  p_output1[3]=-1.*t230;
+  p_output1[4]=t229;
   p_output1[5]=0;
   p_output1[6]=0;
   p_output1[7]=0;

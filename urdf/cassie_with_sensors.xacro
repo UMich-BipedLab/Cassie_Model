@@ -259,7 +259,7 @@
   </xacro:macro>
   <xacro:macro name="fixed_pelvis_to_vectorNav">
     <joint name="fixed_pelvis_to_vectorNav" type="fixed">
-      <origin xyz="0.03155 0 -0.07996" rpy="${pi} 0 0"/>
+      <origin xyz="0.03155 0 -0.07996" rpy="0 0 0"/>
       <parent link="pelvis" />
       <child link="vectorNav" />
     </joint>

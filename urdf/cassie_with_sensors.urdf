@@ -299,7 +299,7 @@
     <child link="multisense"/>
   </joint>
   <joint name="fixed_pelvis_to_vectorNav" type="fixed">
-    <origin rpy="3.14159265359 0 0" xyz="0.03155 0 -0.07996"/>
+    <origin rpy="0 0 0" xyz="0.03155 0 -0.07996"/>
     <parent link="pelvis"/>
     <child link="vectorNav"/>
   </joint>

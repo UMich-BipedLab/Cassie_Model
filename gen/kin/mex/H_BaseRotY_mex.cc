@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 16 Mar 2018 11:07:42 GMT-04:00
+ * Mon 2 Jul 2018 15:32:44 GMT-04:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -45,25 +45,25 @@ const double Degree = 0.01745329251994329576924;
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t16;
-  double t18;
-  double t15;
-  double t20;
-  t16 = Cos(var1[4]);
-  t18 = Sin(var1[3]);
-  t15 = Cos(var1[3]);
-  t20 = Sin(var1[4]);
-  p_output1[0]=t15*t16;
-  p_output1[1]=t16*t18;
-  p_output1[2]=-1.*t20;
+  double t319;
+  double t341;
+  double t309;
+  double t374;
+  t319 = Cos(var1[4]);
+  t341 = Sin(var1[3]);
+  t309 = Cos(var1[3]);
+  t374 = Sin(var1[4]);
+  p_output1[0]=t309*t319;
+  p_output1[1]=t319*t341;
+  p_output1[2]=-1.*t374;
   p_output1[3]=0;
-  p_output1[4]=-1.*t18;
-  p_output1[5]=t15;
+  p_output1[4]=-1.*t341;
+  p_output1[5]=t309;
   p_output1[6]=0;
   p_output1[7]=0;
-  p_output1[8]=t15*t20;
-  p_output1[9]=t18*t20;
-  p_output1[10]=t16;
+  p_output1[8]=t309*t374;
+  p_output1[9]=t341*t374;
+  p_output1[10]=t319;
   p_output1[11]=0;
   p_output1[12]=var1[0];
   p_output1[13]=var1[1];

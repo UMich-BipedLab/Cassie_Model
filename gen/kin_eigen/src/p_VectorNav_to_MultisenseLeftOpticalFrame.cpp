@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 16 Mar 2018 12:16:34 GMT-04:00
+ * Mon 2 Jul 2018 15:37:29 GMT-04:00
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,8 +57,8 @@ static void output1(Eigen::Matrix<double,3,1> &p_output1, const Eigen::Matrix<do
   NULL;
 
   p_output1(0)=0.020449999999999996;
-  p_output1(1)=-0.035;
-  p_output1(2)=-0.32996000000000003;
+  p_output1(1)=0.035;
+  p_output1(2)=0.32996000000000003;
 }
 
 
