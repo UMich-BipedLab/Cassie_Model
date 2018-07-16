@@ -14,6 +14,7 @@
   <xacro:property name="light_grey_RGB" value="0.75 0.75 0.75 1" />
 
   <!-- Links -->
+  <xacro:vectorNav />
   <xacro:pelvis cname="grey" color="${grey_RGB}" />
   <xacro:pelvis_abduction side="left" cname="light_grey" color="${light_grey_RGB}" stl_ext=""/>
   <xacro:pelvis_rotation side="left" cname="light_grey" color="${light_grey_RGB}" stl_ext="" reflect="1" />
@@ -33,12 +34,13 @@
   <xacro:toe side="right" cname="light_grey" color="${light_grey_RGB}" stl_ext="_mirror" reflect="-1"/>
   
   <!-- Joints -->
+  <xacro:fixed_pelvis_to_vectorNav />
   <xacro:fixed_pelvis_to_abduction side="left" reflect="1"/>
   <xacro:hip_abduction side="left"/>
   <xacro:hip_rotation side="left"/>
   <xacro:hip_flexion side="left"/>
   <xacro:knee_joint side="left" reflect="1"/>
-  <xacro:fixed_knee_to_shin side="left"/>
+  <xacro:knee_to_shin side="left"/>
   <xacro:ankle_joint side="left"/>
   <xacro:toe_joint side="left"/>
   <xacro:fixed_pelvis_to_abduction side="right" reflect="-1"/>
@@ -46,7 +48,7 @@
   <xacro:hip_rotation side="right"/>
   <xacro:hip_flexion side="right"/>
   <xacro:knee_joint side="right" reflect="-1"/>
-  <xacro:fixed_knee_to_shin side="right"/>
+  <xacro:knee_to_shin side="right"/>
   <xacro:ankle_joint side="right"/>
   <xacro:toe_joint side="right"/>
   
@@ -64,6 +66,15 @@
 
   
   <!-- Link Definitions-->
+  <xacro:macro name="vectorNav">
+    <link name="vectorNav">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0" />
+                <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+    </link>
+  </xacro:macro>  
   <xacro:macro name="pelvis" params="cname color">
     <link name="pelvis">
       <inertial>
@@ -228,13 +239,25 @@
   </xacro:macro>
   
   <!-- Joint Definitions -->
+  <xacro:macro name="fixed_pelvis_to_multisense">
+    <joint name="fixed_pelvis_to_multisense" type="fixed">
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <parent link="pelvis" />
+      <child link="multisense" />
+    </joint>
+  </xacro:macro>
+  <xacro:macro name="fixed_pelvis_to_vectorNav">
+    <joint name="fixed_pelvis_to_vectorNav" type="fixed">
+      <origin xyz="0.03155 0 -0.07996" rpy="0 0 0"/>
+      <parent link="pelvis" />
+      <child link="vectorNav" />
+    </joint>
+  </xacro:macro>
   <xacro:macro name="fixed_pelvis_to_abduction" params="side reflect">
     <joint name="fixed_${side}" type="fixed">
       <origin xyz="0.021 ${reflect*0.135} 0" rpy="0 ${pi/2} 0"/>
-      <axis xyz="0 0 1"/>
       <parent link="pelvis" />
       <child link="${side}_pelvis_abduction" />
-	  <limit lower="0" upper="0" effort="0" velocity="0" />
     </joint>
   </xacro:macro>
   <xacro:macro name="hip_abduction" params="side">
@@ -257,7 +280,7 @@
       <axis xyz="-1 0 0"/>
       <parent link="${side}_pelvis_rotation" />
       <child link="${side}_hip" />
-	  <limit lower="-0.3927" upper="0.3927" effort="4.5" velocity="12.1475" />
+      <limit lower="-0.3927" upper="0.3927" effort="4.5" velocity="12.1475" />
     </joint>
   </xacro:macro>
   <xacro:macro name="hip_flexion" params="side">
@@ -266,7 +289,7 @@
       <axis xyz="0 0 1"/>
       <parent link="${side}_hip" />
       <child link="${side}_thigh" />
-	  <limit lower="-0.8727" upper="1.3963" effort="12.2" velocity="8.5085" />
+      <limit lower="-0.8727" upper="1.3963" effort="12.2" velocity="8.5085" />
     </joint>
   </xacro:macro>
   <xacro:macro name="knee_joint" params="side reflect">
@@ -275,16 +298,16 @@
       <axis xyz="0 0 1"/>
       <parent link="${side}_thigh" />
       <child link="${side}_knee" />
-	  <limit lower="-2.8623" upper="-0.6458" effort="12.2" velocity="8.5085" />
+      <limit lower="-2.8623" upper="-0.6458" effort="12.2" velocity="8.5085" />
     </joint>
   </xacro:macro>
-  <xacro:macro name="fixed_knee_to_shin" params="side">
-    <joint name="fixed_knee_to_shin_${side}" type="fixed">
+  <xacro:macro name="knee_to_shin" params="side">
+    <joint name="knee_to_shin_${side}" type="continuous">
       <origin xyz="0.0607 0.0474 0" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <parent link="${side}_knee" />
       <child link="${side}_shin" />
-	  <limit lower="0" upper="0" effort="0" velocity="0" />
+      <limit lower="-100" upper="100" effort="0" velocity="100" />
     </joint>
   </xacro:macro>
   <xacro:macro name="ankle_joint" params="side">
@@ -293,7 +316,7 @@
       <axis xyz="0 0 1"/>
       <parent link="${side}_shin" />
       <child link="${side}_tarsus" />
-	  <limit lower="-100" upper="100" effort="0" velocity="100" />
+      <limit lower="-100" upper="100" effort="0" velocity="100" />
     </joint>
   </xacro:macro>
   <xacro:macro name="toe_joint" params="side">
@@ -302,7 +325,7 @@
       <axis xyz="0 0 1"/>
       <parent link="${side}_tarsus" />
       <child link="${side}_toe" />
-	  <limit lower="-2.4435" upper="-0.5236" effort="0.9" velocity="11.5192" />
+      <limit lower="-2.4435" upper="-0.5236" effort="0.9" velocity="11.5192" />
     </joint>
   </xacro:macro>
   
