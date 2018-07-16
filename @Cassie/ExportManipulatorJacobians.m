@@ -25,10 +25,10 @@ J_IR = J_IR([4:6,1:3],7:end);
 J_IR = subs(J_IR, obj.States.x(1:6), zeros(6,1));
 
 % Left Contact to Right Contact and Right Contact to Left Contact Manipulator Jacobians
-J_LR = -Angles.Adjoint_SE3(inv(H_LR))*J_IL + J_IR;
+J_LR = -Adjoint(inv(H_LR))*J_IL + J_IR;
 J_LR = subs(J_LR, obj.States.x(1:6), zeros(6,1));
 
-J_RL = -Angles.Adjoint_SE3(inv(H_RL))*J_IR + J_IL;
+J_RL = -Adjoint(inv(H_RL))*J_IR + J_IL;
 J_RL = subs(J_RL, obj.States.x(1:6), zeros(6,1));
 
 % ---- Export Functions ----
@@ -51,3 +51,15 @@ export_function(J_RL(4:6,:), 'Jv_RightToeBottom_to_LeftToeBottom', export_path, 
 end
 
 
+function [ Ad ] = Adjoint( X )
+%ADJOINT_SE3 Computes the adjoint of SE(3)
+Ad = [X(1:3,1:3), zeros(3);
+      skew(X(1:3,4))*X(1:3,1:3), X(1:3,1:3)];
+end
+
+function [Ax] = skew(v)
+% Convert from vector to skew symmetric matrix
+Ax = [    0, -v(3),  v(2);
+       v(3),     0, -v(1);
+      -v(2),  v(1),     0];
+end
