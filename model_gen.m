@@ -52,11 +52,12 @@ else
 end
 
 %% Compute Manipulator Jacobians
+
 cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
 cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
     
-cassie.ExportManipulatorJacobians(@Export.export_slrt, [EXPORT_PATH,'kin/']);
-cassie.ExportManipulatorJacobians(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
+cassie.ExportJacobians_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
+cassie.ExportJacobians_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
 
 %% Compute CoM position/velocity
 cassie.ExportCoM(@Export.export_slrt, [EXPORT_PATH,'kin/']);

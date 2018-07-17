@@ -175,7 +175,7 @@ classdef Cassie < RobotLinks
                 J = jacobian(p, obj.States.x);
                 R = H(1:3,1:3);
                 export_function(p, ['p_', obj.Joints(i).Name], export_path, obj.States.x);
-                export_function(J, ['J_', obj.Joints(i).Name], export_path, obj.States.x);
+                export_function(J, ['Jp_', obj.Joints(i).Name], export_path, obj.States.x);
                 export_function(H, ['H_', obj.Joints(i).Name], export_path, obj.States.x);
                 export_function(R, ['R_', obj.Joints(i).Name], export_path, obj.States.x);
             end
@@ -188,7 +188,7 @@ classdef Cassie < RobotLinks
                 H = obj.ContactPoints.(cp_fields{i}).computeForwardKinematics;
                 R = H(1:3,1:3);
                 export_function(p, ['p_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
-                export_function(J, ['J_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
+                export_function(J, ['Jp_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
                 export_function(H, ['H_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
                 export_function(R, ['R_', obj.ContactPoints.(cp_fields{i}).Name], export_path, obj.States.x);
             end
@@ -201,7 +201,7 @@ classdef Cassie < RobotLinks
                 H = obj.OtherPoints.(op_fields{i}).computeForwardKinematics;
                 R = H(1:3,1:3);
                 export_function(p, ['p_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
-                export_function(J, ['J_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
+                export_function(J, ['Jp_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
                 export_function(H, ['H_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
                 export_function(R, ['R_', obj.OtherPoints.(op_fields{i}).Name], export_path, obj.States.x);
             end
