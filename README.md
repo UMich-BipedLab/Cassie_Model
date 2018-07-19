@@ -41,3 +41,7 @@ This repository can be used to generate a model of the Cassie-series robot using
 * `q(18)` - knee spring (constrained to 0)
 * `q(19)` - ankle joint (constrained to q19 = deg2rad(13) - q17)
 * `q(20)` - toe joint
+
+<p align="left">
+  <img src="urdf/cassie_coordinates.png" width="350" title="Cassie's coordinates">
+</p>
