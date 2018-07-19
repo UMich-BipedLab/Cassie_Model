@@ -16,7 +16,7 @@ This repository can be used to generate a model of the Cassie-series robot using
 
 ## Cassie coordinate system
 
-#### Base joints
+#### Base DOFs
 * `q(1)` - x
 * `q(2)` - y
 * `q(3)` - z
