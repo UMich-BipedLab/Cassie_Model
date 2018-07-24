@@ -239,13 +239,6 @@
   </xacro:macro>
   
   <!-- Joint Definitions -->
-  <xacro:macro name="fixed_pelvis_to_multisense">
-    <joint name="fixed_pelvis_to_multisense" type="fixed">
-      <origin xyz="0 0 0.25" rpy="0 0 0"/>
-      <parent link="pelvis" />
-      <child link="multisense" />
-    </joint>
-  </xacro:macro>
   <xacro:macro name="fixed_pelvis_to_vectorNav">
     <joint name="fixed_pelvis_to_vectorNav" type="fixed">
       <origin xyz="0.03155 0 -0.07996" rpy="0 0 0"/>
