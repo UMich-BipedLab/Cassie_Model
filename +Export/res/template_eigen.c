@@ -11,7 +11,7 @@
 #ifdef _MSC_VER
   #define INLINE __forceinline /* use __forceinline (VC++ specific) */
 #else
-  #define INLINE inline        /* use standard inline */
+  #define INLINE static inline        /* use standard inline */
 #endif
 
 /**
@@ -35,7 +35,7 @@ INLINE double Sec(double x) { return 1.0/cos(x); }
 
 INLINE double ArcSin(double x) { return asin(x); }
 INLINE double ArcCos(double x) { return acos(x); }
-//INLINE double ArcTan(double x) { return atan(x); }
+
 
 /* update ArcTan function to use atan2 instead. */
 INLINE double ArcTan(double x, double y) { return atan2(y,x); }
@@ -64,7 +64,7 @@ StringJoin@@{"\n  ", StringReplace[Riffle[TemplateSlot["final"][[i]], ";\n  "], 
        
 void <*TemplateSlot["name"]*>(<*StringImplode[Table["Eigen::Matrix<double,"<>ToString[TemplateSlot["argoutDims"][[i,1]]]<>","<>ToString[TemplateSlot["argoutDims"][[i,2]]]<>"> &p_" <> TemplateSlot["argouts"][[i]], {i, Length[TemplateSlot["argouts"]]}], ", "]*>, <*StringImplode[Table["const Eigen::Matrix<double,"<>ToString[TemplateSlot["arginDims"][[i,1]]]<>","<>ToString[TemplateSlot["arginDims"][[i,2]]]<>"> &" <> ToString[TemplateSlot["argins"][[i]]], {i, Length[TemplateSlot["argins"]]}], ", "]*>)
 {
-  // Call Subroutines
+  /* Call Subroutines */
 <*StringJoin@@Table[
 "  "<>TemplateSlot["argouts"][[i]]<>"(p_"<>TemplateSlot["argouts"][[i]]<>", "<> StringImplode[Table[ToString[arg], {arg, TemplateSlot["argins"]}], ", "]<>");\n"
   , {i, Length[TemplateSlot["argouts"]]}
