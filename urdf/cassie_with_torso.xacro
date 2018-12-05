@@ -19,14 +19,14 @@
   <xacro:macro name="torso" params="cname color">
     <link name="torso">
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="8" />
+      <origin rpy="0 0 0" xyz="0.00637 -0.00235 0.0803"/>
+      <mass value="8.5"/>
 		<inertia ixx=".0942" ixy=".000169" ixz=".015" iyy=".084" iyz=".000516" izz=".113" />
       </inertial>
       <visual>
-          <origin xyz="-0.192 -0.19 -0.095" rpy="1.57 0 1.57" />
+          <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://cassie_description/meshes/CassieTorso_Mount.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://cassie_description/meshes/torso.stl" scale="1 1 1"/>
         </geometry>
         <material name="${cname}">
           <color rgba="${color}" />
@@ -289,7 +289,7 @@
   <!-- Joint Definitions -->
   <xacro:macro name="fixed_pelvis_to_torso">
     <joint name="fixed_pelvis_to_torso" type="fixed">
-      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <origin xyz="0.0218 0 0.2606" rpy="0 0 0"/>
       <parent link="pelvis" />
       <child link="torso" />
     </joint>
@@ -297,7 +297,7 @@
 
   <xacro:macro name="fixed_torso_to_top_lidar">
     <joint name="fixed_torso_to_top_lidar" type="fixed">
-      <origin xyz="0.065 0 0.38" rpy="0 0 0"/>
+      <origin xyz="0.0432 0 0.27" rpy="0 0 0"/>
       <parent link="torso" />
       <child link="top_lidar" />
     </joint>
@@ -305,7 +305,7 @@
 
   <xacro:macro name="fixed_torso_to_tilted_lidar">
     <joint name="fixed_torso_to_tilted_lidar" type="fixed">
-      <origin xyz="0.14 0 0.25" rpy="0 0.65 0"/>
+      <origin xyz="0.1182 0 0.13" rpy="0 0.65 0"/>
       <parent link="torso" />
       <child link="tilted_lidar" />
     </joint>
@@ -313,7 +313,7 @@
 
   <xacro:macro name="fixed_torso_to_front_camera">
     <joint name="fixed_torso_to_front_camera" type="fixed">
-      <origin xyz="0.16 0 0.19" rpy="0 0 0"/>
+      <origin xyz="0.1382 0 0.07" rpy="0 0 0"/>
       <parent link="torso" />
       <child link="front_camera" />
     </joint>
@@ -321,7 +321,7 @@
 
   <xacro:macro name="fixed_torso_to_back_camera">
     <joint name="fixed_torso_to_back_camera" type="fixed">
-      <origin xyz="-0.12 0 0.19" rpy="0 0 3.14"/>
+      <origin xyz="-0.1418 0 0.07" rpy="0 0 3.14"/>
       <parent link="torso" />
       <child link="back_camera" />
     </joint>

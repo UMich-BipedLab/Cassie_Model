@@ -9,14 +9,14 @@
 <robot name="cassie" xmlns:xacro="http://ros.org/wiki/xacro">
   <link name="torso">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="8"/>
+      <origin rpy="0 0 0" xyz="0.00637 -0.00235 0.0803"/>
+      <mass value="8.5"/>
       <inertia ixx=".0942" ixy=".000169" ixz=".015" iyy=".084" iyz=".000516" izz=".113"/>
     </inertial>
     <visual>
-      <origin rpy="1.57 0 1.57" xyz="-0.192 -0.19 -0.095"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://cassie_description/meshes/torso.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://cassie_description/meshes/torso.stl" scale="1 1 1"/>
       </geometry>
       <material name="grey">
         <color rgba="0.35 0.35 0.35 1"/>
@@ -367,27 +367,27 @@
     </visual>
   </link>
   <joint name="fixed_pelvis_to_torso" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+    <origin rpy="0 0 0" xyz="0.0218 0 0.2606"/>
     <parent link="pelvis"/>
     <child link="torso"/>
   </joint>
   <joint name="fixed_torso_to_top_lidar" type="fixed">
-    <origin rpy="0 0 0" xyz="0.065 0 0.38"/>
+    <origin rpy="0 0 0" xyz="0.0432 0 0.27"/>
     <parent link="torso"/>
     <child link="top_lidar"/>
   </joint>
   <joint name="fixed_torso_to_tilted_lidar" type="fixed">
-    <origin rpy="0 0.65 0" xyz="0.14 0 0.25"/>
+    <origin rpy="0 0.65 0" xyz="0.1182 0 0.13"/>
     <parent link="torso"/>
     <child link="tilted_lidar"/>
   </joint>
   <joint name="fixed_torso_to_front_camera" type="fixed">
-    <origin rpy="0 0 0" xyz="0.16 0 0.19"/>
+    <origin rpy="0 0 0" xyz="0.1382 0 0.07"/>
     <parent link="torso"/>
     <child link="front_camera"/>
   </joint>
   <joint name="fixed_torso_to_back_camera" type="fixed">
-    <origin rpy="0 0 3.14" xyz="-0.12 0 0.19"/>
+    <origin rpy="0 0 3.14" xyz="-0.1418 0 0.07"/>
     <parent link="torso"/>
     <child link="back_camera"/>
   </joint>
@@ -565,4 +565,3 @@
     <mechanicalReduction>50</mechanicalReduction>
   </transmission>
 </robot>
-
