@@ -62,18 +62,11 @@ StringJoin@@{"\n  ", StringReplace[Riffle[TemplateSlot["final"][[i]], ";\n  "], 
 {i,Length[TemplateSlot["argouts"]]}]
 *>
        
-<*StringImplode[Table["Eigen::Matrix<double,"<>ToString[TemplateSlot["argoutDims"][[i,1]]]<>","<>ToString[TemplateSlot["argoutDims"][[i,2]]]<>">", {i, Length[TemplateSlot["argouts"]]} ]]*> <*TemplateSlot["name"]*>(<*StringImplode[Table["const Eigen::Matrix<double,"<>ToString[TemplateSlot["arginDims"][[i,1]]]<>","<>ToString[TemplateSlot["arginDims"][[i,2]]]<>"> &" <> ToString[TemplateSlot["argins"][[i]]], {i, Length[TemplateSlot["argins"]]}], ", "]*>)
-//void <*TemplateSlot["name"]*>(<*StringImplode[Table["Eigen::Matrix<double,"<>ToString[TemplateSlot["argoutDims"][[i,1]]]<>","<>ToString[TemplateSlot["argoutDims"][[i,2]]]<>"> &p_" <> TemplateSlot["argouts"][[i]], {i, Length[TemplateSlot["argouts"]]}], ", "]*>, <*StringImplode[Table["const Eigen::Matrix<double,"<>ToString[TemplateSlot["arginDims"][[i,1]]]<>","<>ToString[TemplateSlot["arginDims"][[i,2]]]<>"> &" <> ToString[TemplateSlot["argins"][[i]]], {i, Length[TemplateSlot["argins"]]}], ", "]*>)
+void <*TemplateSlot["name"]*>(<*StringImplode[Table["Eigen::Matrix<double,"<>ToString[TemplateSlot["argoutDims"][[i,1]]]<>","<>ToString[TemplateSlot["argoutDims"][[i,2]]]<>"> &p_" <> TemplateSlot["argouts"][[i]], {i, Length[TemplateSlot["argouts"]]}], ", "]*>, <*StringImplode[Table["const Eigen::Matrix<double,"<>ToString[TemplateSlot["arginDims"][[i,1]]]<>","<>ToString[TemplateSlot["arginDims"][[i,2]]]<>"> &" <> ToString[TemplateSlot["argins"][[i]]], {i, Length[TemplateSlot["argins"]]}], ", "]*>)
 {
   /* Call Subroutines */
-  <*StringImplode[Table["Eigen::Matrix<double,"<>ToString[TemplateSlot["argoutDims"][[i,1]]]<>","<>ToString[TemplateSlot["argoutDims"][[i,2]]]<>">", {i, Length[TemplateSlot["argouts"]]} ]]*>  p_output1;
-  
 <*StringJoin@@Table[
 "  "<>TemplateSlot["argouts"][[i]]<>"(p_"<>TemplateSlot["argouts"][[i]]<>", "<> StringImplode[Table[ToString[arg], {arg, TemplateSlot["argins"]}], ", "]<>");\n"
   , {i, Length[TemplateSlot["argouts"]]}
 ]*>
-  return p_output1;
 }
-
-
-

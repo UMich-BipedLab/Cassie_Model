@@ -15,7 +15,8 @@ frost_addpath;
 % Add model paths
 addpath(genpath('urdf'));
 
-%% Load model
+%% Create Model and Export Kinematics 
+% Load model
 cassie = Cassie(fullfile('urdf','cassie.urdf'));
 
 %% Export Kinematics
