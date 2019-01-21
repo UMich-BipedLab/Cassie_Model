@@ -266,8 +266,7 @@ classdef Cassie < RobotLinks
             Ce = eval_math_fun('InertiaToCoriolis',{De_full,obj.States.x, obj.States.dx});
             export_function(Ce, ['Ce_', obj.Name], export_path, {obj.States.x, obj.States.dx});
             
-            Be = SymExpression(obj.Gmap.Control.u);
-            export_function(Be, ['Be_', obj.Name], export_path, {obj.States.x});
+            Be = export_function(Ce, ['Ce_', obj.Name], export_path, {obj.States.x, obj.States.dx});
         end
         
         

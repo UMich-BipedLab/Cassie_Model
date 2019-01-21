@@ -34,6 +34,9 @@ if ~exist(fullfile(EXPORT_PATH,'dyn'),'dir')
     mkdir(fullfile(EXPORT_PATH,'dyn','eigen'));
 end
 cassie.configureDynamics('DelayCoriolisSet',false);
+cassie.ExportDynamics(@Export.export_slrt, fullfile(EXPORT_PATH,'dyn','slrt'));    
+cassie.ExportDynamics(@Export.export_eigen, fullfile(EXPORT_PATH,'dyn','eigen'));    
+
 %cassie.compile([EXPORT_PATH,'dyn/']);
 
 %% Export Energy
