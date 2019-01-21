@@ -36,11 +36,7 @@ end
 cassie.configureDynamics('DelayCoriolisSet',false);
 cassie.ExportDynamics(@Export.export_slrt, fullfile(EXPORT_PATH,'dyn','slrt'));    
 cassie.ExportDynamics(@Export.export_eigen, fullfile(EXPORT_PATH,'dyn','eigen'));    
-
 %cassie.compile([EXPORT_PATH,'dyn/']);
-
-%% Export Energy
-%cassie.ExportEnergy(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
 
 %% Compute Manipulator Jacobians
 cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
@@ -49,13 +45,15 @@ cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
 cassie.ExportJacobians_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
 cassie.ExportJacobians_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
 
+%% Export Energy
+%cassie.ExportEnergy(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
+
 %% Compute CoM position/velocity
-cassie.ExportCoM(@Export.export_slrt, [EXPORT_PATH,'kin/']);
+% cassie.ExportCoM(@Export.export_slrt, [EXPORT_PATH,'kin/']);
 
 %% Compute/export dynamics
-cassie.ExportDynamics(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
-cassie.ExportHolonomicConstraints(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
-cassie.ExportMomentum(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
+% cassie.ExportHolonomicConstraints(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
+% cassie.ExportMomentum(@Export.export_slrt, [EXPORT_PATH,'dyn/']);
 
 
 
