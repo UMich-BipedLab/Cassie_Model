@@ -39,11 +39,11 @@ cassie.ExportDynamics(@Export.export_eigen, fullfile(EXPORT_PATH,'dyn','eigen'))
 %cassie.compile([EXPORT_PATH,'dyn/']);
 
 %% Compute Manipulator Jacobians
-cassie.ExportKinematics_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
-cassie.ExportKinematics_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
+cassie.ExportKinematics_IMU(@Export.export_slrt, fullfile(EXPORT_PATH,'kin','slrt'));
+cassie.ExportKinematics_IMU(@Export.export_eigen, fullfile(EXPORT_PATH,'kin','eigen'));
     
-cassie.ExportJacobians_IMU(@Export.export_slrt, [EXPORT_PATH,'kin/']);
-cassie.ExportJacobians_IMU(@Export.export_eigen, [EXPORT_PATH,'kin_eigen/']);
+cassie.ExportJacobians_IMU(@Export.export_slrt, fullfile(EXPORT_PATH,'kin','slrt'));
+cassie.ExportJacobians_IMU(@Export.export_eigen, fullfile(EXPORT_PATH,'kin','eigen'));
 
 %% Export Energy
 %cassie.ExportEnergy(@Export.export_slrt, [EXPORT_PATH,'dyn/']);

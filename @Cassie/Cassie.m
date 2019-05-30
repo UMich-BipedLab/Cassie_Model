@@ -75,6 +75,7 @@ classdef Cassie < RobotLinks
             
             
             %% Define contact frames
+%             R = Angles.Rz(deg2rad(50))*Angles.Ry(-pi/2);
             R = [0,-sin(deg2rad(50)),-cos(deg2rad(50)); 0,cos(deg2rad(50)),-sin(deg2rad(50)); 1,0,0];
                  
             % Bottom of toe
